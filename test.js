@@ -4,8 +4,7 @@ var assert = require('assert'),
     mostCommonWords = new MostCommonWords();
 
 // TODO:
-//     1. Return complete row correctly up to n = k
-//     2. Stack rows on top of each other up to max n
+//     1. Handle case of multiple most frequently occuring words
 describe('mostCommonWords', function() {
 
     it('should return word for input array of single word', function () {
@@ -13,7 +12,24 @@ describe('mostCommonWords', function() {
 
         var output = mostCommonWords.search(input)
 
-        assert.equal(output, 'word');
+        assert.equal(Object.keys(output)[0], 'word');
+    });
+
+    it('should return object containing each word and frequecy in array', function () {
+        var input = [ 'Her', 'father', 'farmed', '80', 'acres', 'and', 'her', 'mother', 'worked', 'hard' ];
+
+        var output = mostCommonWords.search(input)
+
+        assert.deepEqual(output, { '80': 1, her: 2, father: 1, farmed: 1, acres: 1, and: 1, mother: 1, worked: 1, hard: 1 });
+    });
+
+    it('should return most frequently occuring word in array', function () {
+        var input = [ 'Her', 'father', 'farmed', '80', 'acres', 'and', 'her', 'mother', 'worked', 'hard' ];
+
+        var freqWords = mostCommonWords.search(input);
+        var output = mostCommonWords.sortWords(freqWords)
+
+        assert.equal(output, 'her');
     });
 
 });
