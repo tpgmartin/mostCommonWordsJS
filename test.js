@@ -3,8 +3,6 @@ var assert = require('assert'),
 
     mostCommonWords = new MostCommonWords();
 
-// TODO:
-//     1. Handle case of multiple most frequently occuring words
 describe('mostCommonWords', function() {
 
     it('should return word for input array of single word', function () {
@@ -30,6 +28,42 @@ describe('mostCommonWords', function() {
         var output = mostCommonWords.sortWords(freqWords)
 
         assert.equal(output, 'her');
+    });
+
+    it('should handle case sensitivity in options object', function () {
+        var input = [ 'Blah', 'Blah', 'Blah', 'blah', 'blah' ];
+
+        var freqWords = mostCommonWords.search(input, { 'caseSensitive': true });
+        var output = mostCommonWords.sortWords(freqWords);
+
+        assert.equal(output, 'Blah');
+    });
+
+    it('should return most frequently occuring words in array if all equally frequent', function () {
+        var input = [ 'a', 'b', 'c' ];
+
+        var freqWords = mostCommonWords.search(input);
+        var output = mostCommonWords.sortWords(freqWords)
+
+        assert.deepEqual(output, [ 'a', 'b', 'c' ]);
+    });
+
+    it('should return most frequently occuring words in array in alphabetical order', function () {
+        var input = [ 'b', 'a', 'c' ];
+
+        var freqWords = mostCommonWords.search(input);
+        var output = mostCommonWords.sortWords(freqWords)
+
+        assert.deepEqual(output, [ 'a', 'b', 'c' ]);
+    });
+
+    it('should return most frequently occuring words in array in alphabetical order, if taking case into account', function () {
+        var input = [ 'a', 'A', 'c' ];
+
+        var freqWords = mostCommonWords.search(input, { 'caseSensitive': true });
+        var output = mostCommonWords.sortWords(freqWords)
+
+        assert.deepEqual(output, [ 'A', 'a', 'c' ]);
     });
 
 });
