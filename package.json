@@ -1,0 +1,22 @@
+{
+  "name": "mostCommonWordsJS",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tpgmartin/mostCommonWordsJS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tpgmartin/mostCommonWordsJS/issues"
+  },
+  "homepage": "https://github.com/tpgmartin/mostCommonWordsJS",
+  "devDependencies": {
+    "mocha": "^2.3.3"
+  }
+}
